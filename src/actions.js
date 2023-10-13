@@ -2,6 +2,8 @@ import axios from "axios";
 export const NOT_EKLE = "NOT_EKLE";
 export const NOT_SIL = "NOT_SIL";
 
+
+
 export function notEkle(not) {
   return {
     type: NOT_EKLE,
@@ -10,7 +12,7 @@ export function notEkle(not) {
 }
 export function setNotes(not) {
   return {
-    type: setNotes,
+    type: "SET_NOTES",
     payload: not,
   };
 }
@@ -27,7 +29,7 @@ export const notEkleAPI = (yeniNot) => (dispatch) => {
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
       if (res.status === 200) {
-        dispatch(notEkle(JSON.parse(res.data.data))); // oluşturduğunuz notEkle ile dispatch edin
+        dispatch(notEkle(JSON.parse(res.data.data))); // oluşturduğun notEkle ile dispatch et
       }
     })
     .catch((error) => console.log(error));
@@ -39,8 +41,8 @@ export const notSilAPI = (id) => (dispatch) => {
     .delete("https://httpbin.org/anything", { data: id })
     .then((res) => {
       if (res.status === 200) {
-        const silinenNotId = res.data; // res.data objesi içerisinde ihtiyaç duyduğunuz değeri bulun
-        dispatch(notSil(silinenNotId)); // oluşturduğunuz notSil ile dispatch edin
+        const silinenNotId = res.data; // res.data objesi içerisinde ihtiyaç duyduğun değeri bul
+        dispatch(notSil(silinenNotId)); // oluşturduğun notSil ile dispatch et
       }
     })
     .catch((error) => console.log(error));
